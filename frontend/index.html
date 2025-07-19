@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Dictionary</title>
+</head>
+<body>
+  <h1>🔍 Cloud Dictionary</h1>
+  <input type="text" id="word" placeholder="Enter a cloud term">
+  <button onclick="getDefinition()">Search</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function getDefinition() {
+      const word = document.getElementById("word").value;
+      const res = await fetch(`/api/GetDefinition?word=${word}`);
+      const data = await res.json();
+      document.getElementById("result").innerText = `${data.word.toUpperCase()}: ${data.definition}`;
+    }
+  </script>
+</body>
+</html>
